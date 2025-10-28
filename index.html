@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Do You Like Me?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #fff0f5);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .container h1 {
+      font-size: 2em;
+      color: #ff1493;
+      margin-bottom: 10px;
+    }
+
+    .container p {
+      color: #444;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .love-btn {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .love-btn:hover {
+      background-color: #ff1493;
+      transform: scale(1.1);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff69b4;
+      font-size: 24px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .cartoon {
+      width: 280px;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img class="cartoon" src="https://i.postimg.cc/L8WHj7k3/loveme.png" alt="Boy kneeling with flowers for girl">
+    <h1>Hey... can you like me back? 💞</h1>
+    <p>I’ve liked you for a while... and I just had to tell you 💌</p>
+    <button class="love-btn" id="loveBtn">Yes, I like you too 💖</button>
+    <h2 id="response" class="hidden">You just made my heart smile 😍</h2>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    const btn = document.getElementById('loveBtn');
+    const response = document.getElementById('response');
+    const hearts = document.getElementById('hearts');
+
+    btn.addEventListener('click', () => {
+      response.classList.remove('hidden');
+      btn.classList.add('hidden');
+
+      // generate floating hearts
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+        hearts.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+      }
+    });
+  </script>
+
+</body>
+</html>
